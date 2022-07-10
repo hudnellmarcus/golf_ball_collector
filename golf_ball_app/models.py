@@ -30,34 +30,38 @@ FEEL = [
 
 
 # Create your models here.
-class Ball(models.Model):
-
+class Brand(models.Model):
     brand = models.CharField(
         max_length=2,
         choices=BRANDS
     )
+    def __str__(self):
+        return self.brand
+    
+    
+
+class Ball(models.Model):
+
     name = models.CharField(max_length=100, default="")
     description = models.TextField(max_length=250)
-    
-    def __str__(self):
-        return f"{self.brand}:{self.name}"
-    
-class Attribute(models.Model):
-    
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     spin = models.CharField(
         max_length=1,
         choices=SPIN
     )
-    
     feel = models.CharField(
         max_length=1,
         choices=FEEL
     )
     
-    ball = models.ForeignKey(Ball, on_delete=models.CASCADE)
-
     def __str__(self):
-        return f"{self.ball} spin:{self.spin} feel:{self.feel}"
+    
+        return f"{self.brand}: {self.name} has a {self.spin} spin and {self.feel} feel"
+  
+    
+
+
+    
     
     
     

@@ -1,6 +1,16 @@
 {% extends 'base.html'%} {% block content %} 
 
-<h1>This is the index page</h1>
+<h1>Top Golf Balls</h1>
 
+{% for ball in balls %}
+<div class="card">
+  <a href="/balls/{{ ball. }}">
+    <div class="card-content">
+      <span class="card-title">{{ ball.brand }}</span>
+      <p>{{ ball.name }}
+    </div>
+</div>
+{% endfor %} {% endblock %}
 
-{% endblock %}
+     
+     
