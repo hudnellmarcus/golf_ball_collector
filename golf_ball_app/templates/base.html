@@ -12,7 +12,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
 
-<link rel="stylesheet" type="text/css" href="{% static 'golf_ball_app/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'golf_ball_app/css/style.css' %}"
+    />
   </head>
   <body>
     <header class="navbar-fixed">
@@ -20,22 +24,27 @@
         <div class="nav-wrapper">
           <ul>
             <li>
-              <a href="/" class="left brand-logo">  GOLF</a>
+              <a href="/" class="left brand-logo"> GOLF</a>
             </li>
           </ul>
           <ul class="right">
-            <li><a href="/balls">Balls </a></li>
-            <li><a href="/list">Wishlist </a></li>
             <li><a href="/about">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %}"> Top Balls </a></li>
+            <li><a href="/list">Wishlist </a></li>
+            <li><a href="{% url 'balls_create' %}">Add To List </a></li>
+            <li><a href="{% url 'logout'%}">Log Out </a></li>
+            {% else %}
+            <li><a href="{% url 'login'%}">Log In </a></li>
+            <li><a href="{% url 'index' %}"> Top Balls </a></li>
           </ul>
+          {% endif %}
         </div>
       </nav>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
     <footer class="page-footer">
-      <div class="right">
-        All Rights Reserved, © 2022 Golf Ball  
-      </div>
+      <div class="right">All Rights Reserved, © 2022 Golf Ball</div>
     </footer>
   </body>
 </html>

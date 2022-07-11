@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 BRANDS = [
     ('B', 'Bridgestone'),
     ('C', 'Callaway'),
@@ -59,7 +60,6 @@ class Ball(models.Model):
     
         return f"{self.brand}: {self.name} has a {self.get_spin_display()} spin and {self.get_feel_display()} feel"
   
-    
 
 
     
