@@ -4,9 +4,9 @@
 
 {% for ball in balls %}
 <div class="card">
-  <a href="/balls/{{ ball. }}">
+  <a href="/balls/{{ ball.id }}">
     <div class="card-content">
-      <span class="card-title">{{ ball.brand }}</span>
+      <span class="card-title">{{ ball.brand.get_name_display }}</span>
       <p>{{ ball.name }}
     </div>
 </div>

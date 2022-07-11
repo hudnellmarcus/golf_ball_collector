@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 BRANDS = [
     ('B', 'Bridgestone'),
@@ -31,17 +32,17 @@ FEEL = [
 
 # Create your models here.
 class Brand(models.Model):
-    brand = models.CharField(
+    name = models.CharField(
         max_length=2,
         choices=BRANDS
     )
     def __str__(self):
-        return self.brand
+        return self.get_name_display()
     
     
 
 class Ball(models.Model):
-
+    user = models.ManyToManyField(User)
     name = models.CharField(max_length=100, default="")
     description = models.TextField(max_length=250)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
@@ -56,7 +57,7 @@ class Ball(models.Model):
     
     def __str__(self):
     
-        return f"{self.brand}: {self.name} has a {self.spin} spin and {self.feel} feel"
+        return f"{self.brand}: {self.name} has a {self.get_spin_display()} spin and {self.get_feel_display()} feel"
   
     
 

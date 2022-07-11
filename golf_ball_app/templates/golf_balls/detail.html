@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Golf Ball Details</h1>
+
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+        <span class="card-title">{{ ball.brand.get_name_display }}</span>
+      <div class="card-content">
+        <h4>{{ ball.name }}</h4>
+          <p>Description: {{ ball.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

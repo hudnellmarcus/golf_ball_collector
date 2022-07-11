@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Brand, Ball
 
@@ -17,3 +17,11 @@ def golf_ball_index(request):
         'brand': brand,
         }
     )
+    
+def golf_ball_detail(request, ball_id): 
+    ball = Ball.objects.get(id=ball_id)
+    return render(request, 'golf_balls/detail.html', {'ball': ball })
+
+def assoc_brand(request, ball_id, brand_id):
+    Ball.objects.get(id=ball_id).brand.add(brand_id)
+    return redirect('detail', ball_id=ball_id)
